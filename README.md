@@ -54,5 +54,11 @@ Every sensitive read, write, or override action is recorded following the HL7 FH
 
 ---
 
+## Database Architecture (ER Diagram)
+The relational database schema of MedShield-EHR covers **7 core tables** designed in accordance with ISO 27799, OWASP ASVS, and HL7 FHIR standards:
+![MedShield-EHR Database ER Diagram](./docs/er-diagram-image.svg)
+> **Note:** You can view or download the original file for editing at [./docs/database-er-diagram.drawio](./docs/database-er-diagram.drawio)
+
+
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

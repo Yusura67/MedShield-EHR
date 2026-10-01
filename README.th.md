@@ -49,5 +49,10 @@
 
 ---
 
+## ผังโครงสร้างฐานข้อมูล (Database ER Diagram)
+ระบบ MedShield-EHR ถูกออกแบบฐานข้อมูลเชิงสัมพันธ์ (Relational Database) ครอบคลุม **7 ตารางหลัก** ตามมาตรฐานความปลอดภัยสากล ISO 27799, OWASP ASVS และ HL7 FHIR:
+![MedShield-EHR Database ER Diagram](./docs/er-diagram-image.svg)
+> 💡 **หมายเหตุ:** สามารถเปิดดูหรือดาวน์โหลดไฟล์ต้นฉบับสำหรับการแก้ไขได้ที่ [./docs/database-er-diagram.drawio](./docs/database-er-diagram.drawio)
+
 ## สัญญาอนุญาต (License)
 โครงการนี้เผยแพร่ภายใต้สัญญาอนุญาต **MIT License** - สามารถดูรายละเอียดได้ที่ไฟล์ [LICENSE](LICENSE)
