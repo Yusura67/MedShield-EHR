@@ -1,0 +1,24 @@
+{
+  "name": "medshield-ehr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "> **โครงการนี้จัดทำขึ้นเพื่อศึกษาและพัฒนาระบบเวชระเบียนต้นแบบตามหลักความมั่นคงปลอดภัยไซเบอร์ เพื่อประยุกต์ใช้มาตรฐานสากล ISO 27799, OWASP ASVS และ HL7 FHIR ในการปฏิบัติงานจริง เพิ่มทักษะในการนำมาตรฐานสากลความปลอดภัย มาประยุกต์ใช้จริง**",
+  "main": "index.js",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend"
+  },
+  "keywords": [
+    "cybersecurity",
+    "healthcare",
+    "iso227799",
+    "owasp-asvs",
+    "hl7-fhir"
+  ],
+  "author": "",
+  "license": "MIT"
+}
