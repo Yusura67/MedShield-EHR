@@ -10,6 +10,9 @@ import { checkConnection } from './config/db.js';
 // IMPORT ROUTES.
 
 
+// IMPORT MIDDLEWARES
+import { globalErrorHandler } from './middlewares/errorHandler.js';
+
 // CONFIGURATION & VARIABLE.
 const PORT = CONFIG.PORT;
 const app = express();
@@ -24,7 +27,7 @@ app.use(helmet());
 
 
 // GLOBAL ERROR HANDLE.
-
+app.use(globalErrorHandler);
 
 // START SERVER.
 const startServer = async () => {
