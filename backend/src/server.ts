@@ -8,7 +8,7 @@ import { CONFIG } from './config/env.js';
 import { checkConnection } from './config/db.js';
 
 // IMPORT ROUTES.
-
+import authRoutes from './features/auth/auth.route.js';
 
 // IMPORT MIDDLEWARES
 import { globalErrorHandler } from './middlewares/errorHandler.js';
@@ -24,7 +24,7 @@ app.use(cors());
 app.use(helmet());
 
 // ROUTES.
-
+app.use('/api/auth', authRoutes);
 
 // GLOBAL ERROR HANDLE.
 app.use(globalErrorHandler);
