@@ -38,5 +38,19 @@ export const authController = {
         } catch (error) {
             next(error);
         }
+    },
+
+    // GET ME
+    async getMe (req: AuthenticatedRequest, res: Response, next: NextFunction) {
+        try {
+            res.status(200).json({
+                success: true,
+                data: {
+                    user: req.user
+                }
+            });
+        } catch (error) {
+            next(error);
+        }
     }
 };
