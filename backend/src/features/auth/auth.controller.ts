@@ -1,8 +1,9 @@
 // backend/src/features/auth/auth.controller.ts
 // IMPORT MODULES.
 import { Request, Response, NextFunction } from 'express';
-import { registerSchema, loginSchema } from './auth.schema';
-import { authService } from './auth.service';
+import { registerSchema, loginSchema } from './auth.schema.js';
+import { authService } from './auth.service.js';
+import { AuthenticatedRequest } from '../../middlewares/verifyToken.js';
 
 export const authController = {
     // REGISTER.

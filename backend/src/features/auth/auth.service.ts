@@ -2,7 +2,7 @@
 // IMPORT MODULES.
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
+import { RowDataPacket, ResultSetHeader } from 'mysql2/promise.js';
 
 import { pool } from '../../config/db';
 import { CONFIG } from '../../config/env';
