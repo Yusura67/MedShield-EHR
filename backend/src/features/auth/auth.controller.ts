@@ -43,10 +43,14 @@ export const authController = {
     // GET ME
     async getMe (req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
+            const userId = req.user!.id;
+
+            const currentUser = await authService.getMe(userId);
+
             res.status(200).json({
                 success: true,
                 data: {
-                    user: req.user
+                    user: currentUser
                 }
             });
         } catch (error) {

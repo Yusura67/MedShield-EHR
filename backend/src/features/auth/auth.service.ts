@@ -113,5 +113,28 @@ export const authService = {
                 role: user.role
             }
         };
+    },
+
+    async getMe(userId: number) {
+        const [ users ] = await pool.query<UserRow[]>(
+            'SELECT id, username, role, locked_until FROM users WHERE id = ?',
+            [ userId ]
+        );
+
+        const user = users[0];
+
+        if (!user) {
+            throw new AppError('User account not found or has been deactivated', 401);
+        }
+
+        if (user.locked_until && new Date(user.locked_until).getTime() > Date.now()) {
+            throw new AppError('Account is currently locked. Access denied.', 403)
+        }
+
+        return {
+            user_id: user.id,
+            username: user.username,
+            role: user.role
+        };
     }
 };
