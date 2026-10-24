@@ -16,7 +16,9 @@ export const registerSchema = z.object({
 
     role: z.enum(['doctor', 'nurse', 'patient', 'auditor'], {
         error: 'Role must be doctor, nurse, patient, or auditor'
-    })
+    }),
+
+    email: z.email('Invalid email address')
 });
 
 export const loginSchema = z.object({
