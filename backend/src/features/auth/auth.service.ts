@@ -101,7 +101,7 @@ export const authService = {
         );
 
         const token = jwt.sign(
-            { id: user.id, username: user.username, role: user.role },
+            { id: user.user_id, username: user.username, role: user.role },
             CONFIG.JWT_SECRET,
             { expiresIn: '8h' }
         );
@@ -117,9 +117,9 @@ export const authService = {
     },
 
     async getMe(userId: number) {
-        const [ users ] = await pool.query<UserRow[]>(
+        const [users] = await pool.query<UserRow[]>(
             'SELECT user_id, username, role, locked_until FROM users WHERE user_id = ?',
-            [ userId ]
+            [userId]
         );
 
         const user = users[0];
