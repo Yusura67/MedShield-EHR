@@ -2,14 +2,14 @@
 // IMPORT MODULES
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { User, LoginCredentials } from '../features/auth/types';
-import { loginApi, getMeApi } from '../features/auth/api/auth.api';
+import { loginApi, getMeApi, logoutApi } from '../features/auth/api/auth.api';
 
 interface AuthContextType {
     user: User | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     login: (credential: LoginCredentials) => Promise<void>;
-    logout: () => void;
+    logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,30 +20,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     useEffect(() => {
         const initAuth = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const currentUser = await getMeApi();
-                    setUser(currentUser);
-                } catch(error) {
-                    console.error('Session expired or invalid token: ', error);
-                    localStorage.removeItem('token');
-                    setUser(null);
-                }
+            try {
+                const currentUser = await getMeApi();
+                setUser(currentUser);
+            } catch {
+                setUser(null);
+            } finally {
+                setIsLoading(false);
             }
-            setIsLoading(false);
         };
         initAuth();
     }, []);
 
     const login = async (credentials: LoginCredentials) => {
-        const data = await loginApi(credentials);
-        localStorage.setItem('token', data.token);
-        setUser(data.user);
+        const loggedInUser = await loginApi(credentials);
+        setUser(loggedInUser);
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
+    const logout = async () => {
+        await logoutApi();
         setUser(null);
         window.location.href = '/login';
     };

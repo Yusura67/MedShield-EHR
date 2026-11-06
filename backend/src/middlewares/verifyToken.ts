@@ -12,16 +12,10 @@ export interface AuthenticatedRequest extends Request {
 
 // VERIFY TOKEN MIDDLEWARE.
 export const verifyToken = (req: AuthenticatedRequest, res: Response, next:NextFunction): void => {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return next(new AppError('Access denied. No token provided.', 401));
-    }
-
-    const token = authHeader.split(" ")[1];
+    const token = req.cookies?.token;
 
     if (!token) {
-        throw new AppError("No token", 403);
+        return next(new AppError('Access denied. No token Provided.', 401))
     }
 
     try {

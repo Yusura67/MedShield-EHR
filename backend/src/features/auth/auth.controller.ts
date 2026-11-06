@@ -30,12 +30,39 @@ export const authController = {
 
             const result = await authService.login(validatedData);
 
+            res.cookie('token', result.token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 8 * 60 * 60 * 1000
+            });
+
             res.status(200).json({
                 success: true,
                 message: 'Login successful',
-                data: result
+                data: {
+                    user: result.user
+                }
             });
         } catch (error) {
+            next(error);
+        }
+    },
+
+    // LOGOUT
+    async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.clearCookie('token', {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict'
+            });
+
+            res.status(200).json({
+                success: true,
+                message: 'Logged out successfully!'
+            });
+        } catch(error) {
             next(error);
         }
     },
