@@ -1,10 +1,7 @@
-// backend/src/config/env.ts
-// IMPORT MODULE.
 import dotenv from 'dotenv';
 dotenv.config();
 
-// VALIDATION ENVIRONMENT VARIABLE.
-const requiredEnv = ['PORT', 'JWT_SECRET', 'DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME'];
+const requiredEnv = ['PORT', 'JWT_SECRET', 'DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME', 'ENCRYPTION_KEY'];
 const missingEnv: string[] = [];
 
 for (const key of requiredEnv) {
@@ -14,14 +11,14 @@ for (const key of requiredEnv) {
 }
 
 if (missingEnv.length > 0) {
-    console.error(missingEnv.join(' ') + "isn't in the .env file.");
+    console.error(missingEnv.join(' ') + " isn't in the .env file.");
     process.exit(1);
 }
 
-// EXPORT READ-ONLY.
 export const CONFIG = {
     PORT: Number(process.env.PORT!),
     JWT_SECRET: process.env.JWT_SECRET!,
+    ENCRYPTION_KEY: process.env.ENCRYPTION_KEY!,
 
     DATABASE: {
         host: process.env.DB_HOST!,
