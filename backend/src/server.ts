@@ -8,6 +8,9 @@ import { checkConnection } from './config/db.js';
 
 import authRoutes from './features/auth/auth.route.js';
 import patientRoutes from './features/patients/patient.routes.js';
+import clinicalRoutes from './features/clinical/clinical.routes.js';
+import emergencyRoutes from './features/emergency/emergency.routes.js';
+import auditRoutes from './features/audit/audit.routes.js';
 
 import { globalErrorHandler } from './middlewares/errorHandler.js';
 
@@ -25,6 +28,9 @@ app.use(helmet());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/patients', patientRoutes);
+app.use('/api/clinical', clinicalRoutes);
+app.use('/api/emergency', emergencyRoutes);
+app.use('/api/audit', auditRoutes);
 
 app.use(globalErrorHandler);
 

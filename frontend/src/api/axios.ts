@@ -1,5 +1,3 @@
-// frontend/src/api/axios.ts
-// IMPORT MODULE.
 import axios from 'axios';
 
 export const api = axios.create({
@@ -24,3 +22,5 @@ api.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+export default api;
